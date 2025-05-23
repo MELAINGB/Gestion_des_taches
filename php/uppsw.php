@@ -1,10 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION['email'])){
-    header('Location: conn.php');
+    header('Location: ../page/conn.php');
 }
 
-include 'bdd.php';
+include '../bdd.php';
 
 if(isset($_POST['uppsw'])){
     $psw_act=filter_input(INPUT_POST, 'psw_act', FILTER_SANITIZE_STRING);
@@ -26,7 +26,7 @@ if(isset($_POST['uppsw'])){
                 $conn->query($sql);
                 echo "<h4>Mot de passe mis à jour avec success !</h4>";
                 echo "<script>
-                    setTimeout(function() {window.location.href = 'compte.php'; }, 2000); // 2000 millisecondes = 2 s
+                    setTimeout(function() {window.location.href = '../page/compte.php'; }, 2000); // 2000 millisecondes = 2 s
                     </script>";
             } else {
                 echo " <h4>Les mots de passe ne correspondent pas</h4>";
@@ -44,7 +44,7 @@ if(isset($_POST['uppsw'])){
 ?>
 <script>
     setTimeout(function() {
-      window.location.href = "compte.php"; 
+      window.location.href = "../page/compte.php"; 
     }, 2000); // 2000 millisecondes = 2 secondes
 </script>
 

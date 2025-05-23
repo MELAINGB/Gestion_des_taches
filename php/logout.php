@@ -2,6 +2,6 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-header('location:conn.php');
+header('location:../page/conn.php');
 
 ?>

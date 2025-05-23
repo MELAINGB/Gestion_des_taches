@@ -1,5 +1,4 @@
 <?php
-
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -15,7 +14,6 @@
     } catch(PDOException $e) {
         die("Connection failed: " . $e->getMessage());
     }
-
 ?>
 
 

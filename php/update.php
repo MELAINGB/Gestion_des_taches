@@ -1,4 +1,4 @@
-<?php include 'bdd.php';
+<?php include '../bdd.php';
 if(isset($_POST['update_task']))
 {
     
@@ -17,7 +17,7 @@ if(isset($_POST['update_task']))
     
     if ($stmt->execute()) {
         echo "Information de $titre mise à jour avec succès!";
-        header ('location: index.php');
+        header ('location: ../page/index.php');
         
     } else {
         echo "Erreur de mise à jour";

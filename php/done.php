@@ -1,4 +1,4 @@
-<?php include 'bdd.php';
+<?php include '../bdd.php';
 
 if(isset($_GET['id_tache'])){
     $id = $_GET['id_tache'];
@@ -6,7 +6,7 @@ if(isset($_GET['id_tache'])){
     $conn->query($sql);
     
     if($conn){
-        header('Location: index.php');
+        header('Location: ../page/index.php');
     }else{
         echo "Quelque chose s'est mal passée";
     }

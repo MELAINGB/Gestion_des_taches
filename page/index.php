@@ -1,4 +1,4 @@
-<?php include 'bdd.php';
+<?php include '../bdd.php';
 session_start();
 // Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
 if(!isset($_SESSION['email'])){
@@ -12,14 +12,14 @@ if(!isset($_SESSION['email'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <title>Gestion des tâches</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../style/styles.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
-<?php include 'header.php'; ?>
-<!--<body>
+
+<body>
     
-    <div class="search-bar">
+    <!--<div class="search-bar">
     <input type="text" id="searchInput" placeholder="Rechercher une tâche...">
     <button onclick="searchTasks()"><ion-icon name="search-outline"></ion-icon></button>
 </div>
@@ -39,10 +39,11 @@ if(!isset($_SESSION['email'])){
     });
 }
 </script>-->
+    <?php include 'header.php'; ?>
 
     <div class="app-container">
         <!-- Formulaire d'ajout de tâche -->
-        <form method="post" action="add.php" class="task-form">
+        <form method="post" action="../php/add.php" class="task-form">
             <input type="text" name="titre" placeholder="Titre" maxlength="40" required>
             <input type="text" name="description" placeholder="Description (Facultative)" maxlength="50">
             <div class="form-group">
@@ -53,11 +54,25 @@ if(!isset($_SESSION['email'])){
         </form>
 
         <!-- Liste des tâches -->
-         <h2>Tâches en cours</h2>
+        <h2 class="section-title">📝 Tâches en cours</h2>
+        <style>
+            .section-title {
+            font-size: 1.2rem;
+            color: #2d4059;
+            padding: 0.5rem;
+            margin-bottom: 20px;
+            text-align: left;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(45,64,89,0.08);
+            display: inline-block;
+            }
+        </style>
         <div class="tasks">
            
             <ul>
-                <?php include 'bdd.php';
+                <?php include '../bdd.php';
                 $id = $_SESSION['id_user'];
 
                 // Récupérer toutes les tâches
@@ -86,9 +101,9 @@ if(!isset($_SESSION['email'])){
                         <div class="task-actions">
                             <ion-icon id="toggleActions<?= $row['id_tache'] ?>" name="ellipsis-horizontal-outline" class="action-toggle"></ion-icon>
                             <div id="actionLinks<?= $row['id_tache'] ?>" class="action-links">
-                                <a href="done.php?id_tache=<?= $row['id_tache'] ?>" class="action-link"><ion-icon name="checkbox-outline"></ion-icon></a>
+                                <a href="../php/done.php?id_tache=<?= $row['id_tache'] ?>" class="action-link"><ion-icon name="checkbox-outline"></ion-icon></a>
                                 <a href="#" class="openModal action-link" data-id="<?= $row['id_tache'] ?>" data-titre="<?= $row['titre'] ?>" data-description="<?= $row['description'] ?>"><ion-icon name="create-outline"></ion-icon></a>
-                                <a href="delete.php?id_tache=<?= $row['id_tache'] ?>" class="action-link"><ion-icon name="trash-outline"></ion-icon></a>
+                                <a href="../php/delete.php?id_tache=<?= $row['id_tache'] ?>" class="action-link"><ion-icon name="trash-outline"></ion-icon></a>
                             </div>
                         </div>
                     </li>
@@ -102,7 +117,7 @@ if(!isset($_SESSION['email'])){
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Modifier une tâche</h2>
-            <form method="post" action="update.php">
+            <form method="post" action="../php/update.php">
                 <input type="hidden" name="id_tache" id="modal_id_tache">
                 <input type="text" name="titre" id="modal_titre" maxlength="40" required>
                 <input type="text" name="des" id="modal_description" maxlength="50">

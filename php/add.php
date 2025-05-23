@@ -1,7 +1,7 @@
-<?php include 'bdd.php';
+<?php include '../bdd.php';
 session_start();
 if(!isset($_SESSION['email'])){
-    header('Location: conn.php');
+    header('Location: ../page/conn.php');
 } ?>
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if(!isset($_SESSION['email'])){
 
         if ($stmt->execute()) {
             echo "Tâche ajoutée avec succès.";
-            header ('Location: index.php');
+            header ('Location: ../page/index.php');
         } else {
 
             echo "Une erreur s'est produite lors de l'ajout de la tâche.";
