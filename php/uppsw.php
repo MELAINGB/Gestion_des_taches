@@ -7,9 +7,9 @@ if(!isset($_SESSION['email'])){
 include '../bdd.php';
 
 if(isset($_POST['uppsw'])){
-    $psw_act=filter_input(INPUT_POST, 'psw_act', FILTER_SANITIZE_STRING);
-    $psw=filter_input(INPUT_POST, 'psw', FILTER_SANITIZE_STRING);
-    $pswc=filter_input(INPUT_POST, 'psw1', FILTER_SANITIZE_STRING);
+    $psw_act=filter_input(INPUT_POST, 'psw_act', FILTER_SANITIZE_SPECIAL_CHARS);
+    $psw=filter_input(INPUT_POST, 'psw', FILTER_SANITIZE_SPECIAL_CHARS);
+    $pswc=filter_input(INPUT_POST, 'psw1', FILTER_SANITIZE_SPECIAL_CHARS);
     $id_user = $_SESSION['id_user'];
 
     $sql = "SELECT * FROM utilisateurs WHERE id_user = $id_user";

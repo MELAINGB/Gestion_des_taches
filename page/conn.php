@@ -6,6 +6,9 @@
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <title>Se Connecter</title>
     <link rel="stylesheet" href="../style/conn.css">
+    <script src="../script/script.js"></script>
+    <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" > </script> 
+    <script  nomodule  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" > </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   
 </head>
@@ -35,8 +38,8 @@
                                     <label for="email">Email</label> 
                                 </div> 
                             <div class="input-field">
-                                    <input type="password" class="input" id="pass" name="password" required="">
-                                    <label for="pass">Mot de passe</label>
+                                    <input type="password" class="input" id="pass" name="password" onclick="togglePassword()" required>
+                                    <label for="pass">Mot de passe </label>
                                 </div> 
                             <div class="input-field">
                                     
@@ -55,7 +58,7 @@
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-                            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+                            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
                         
                             // Récupération des données de l'utilisateur
                             $sql = "SELECT * FROM utilisateurs WHERE email = :email";
@@ -76,7 +79,7 @@
                                     header('Location: index.php');
                                                                         
                                 } else {
-                                  echo "<h5>Mot de passe incorrect.</h5>";
+                                   echo "<h5>Email incorrect/ utilisateur introuvable.</h5>";
                                 }
                                 
                             }else{

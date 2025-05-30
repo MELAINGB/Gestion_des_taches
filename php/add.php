@@ -16,10 +16,10 @@ if(!isset($_SESSION['email'])){
 
     // Ajouter une tâche
     if (isset($_POST['add_task'])) {
-        $titre = htmlspecialchars(filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING));
-        $description = htmlspecialchars(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
+        $titre = htmlspecialchars(filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_SPECIAL_CHARS));
+        $description = htmlspecialchars(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS));
         $id_user = htmlspecialchars($_SESSION['id_user']);
-        $deadline= htmlspecialchars(filter_input(INPUT_POST, 'deadline', FILTER_SANITIZE_STRING));
+        $deadline= htmlspecialchars(filter_input(INPUT_POST, 'deadline', FILTER_SANITIZE_SPECIAL_CHARS));
 
     
         if ($deadline ) {

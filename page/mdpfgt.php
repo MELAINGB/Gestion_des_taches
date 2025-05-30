@@ -45,23 +45,35 @@
                                 echo '<h5>Aucun compte n\'est associé à cet email</h5>';
                             }else{
                                 if ($email) {
+                                    // Envoi de code de réinitialisation de mot de passe
+
+                                    //$OTP = rand(100000, 999999); Génération d'un code OTP aléatoire
                                     $to = $email;
                                     $subject = "Réinitialisation de mot de passe";
-                                    $message = "Cliquez sur le lien suivant pour réinitialiser votre mot de passe : <a href='http://example.com/reset_password.php?token=your_token'>Réinitialiser</a>";
-                                    $headers = "From: melaingb@gmail.com\r\n";
-                                    $headers .= "MIME-Version: 1.0\r\n";
-                                    if (mail($to, $subject, $message, $headers)) {
-                                        echo '<h5>Un email de réinitialisation a été envoyé à votre adresse</h5>';
+                                    $message = "Bonjour,\n
+                                    Vous avez demandé la réinitialisation de votre mot de passe. Veuillez utiliser le lien suivant pour réinitialiser votre mot de passe :\n 
+                                    https://melain.alwaysdata.net/gt/page/newmdp.php?token=" . urlencode(base64_encode(openssl_encrypt($email, 'AES-128-CTR', 'votre_cle_secrete', 0, '1234567891011121'))) . "\n
+                                    Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet email.\n
+                                    Merci de votre confiance.\n
+                                    Cordialement,\n
+                                    L'équipe de gt de Melain😊";
+                                    $headers = "From: melainbigmangbaguidi@gmail.com\r\n";
+                                    $email = mail($to, $subject, $message, $headers);
+                                    if ($email) {
+                                        echo '<h5 style = "color: green;">Un email de réinitialisation a été envoyé à votre adresse. Consultez votre spam si vous ne le trouvez pas </h5>'; ?> 
+                                        
+                                        <?php
+                                      
                                     } else {
                                         echo '<h5>Erreur lors de l\'envoi de l\'email : contactez nous!</h5>';
                                     }
 
                                 } else {
                                     echo '<h5>Veuillez entrer votre email valide </h5>';
-                                }
-                                
+                                }  
                             }
-                        }       
+                        }   
+                            
                         ?>
                     </div>
                 </div>
