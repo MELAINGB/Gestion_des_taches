@@ -35,6 +35,7 @@ if(!isset($_SESSION['email'])){
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="history.php">Liste des tâches</a></li>
+                    <li><a href="groups.php">Groupes</a></li>
                 </ul>
             </nav>
             <p class="header-alert"> <i>Toujours à jour dans mes tâches.</i></p>
