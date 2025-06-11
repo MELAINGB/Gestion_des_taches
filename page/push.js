@@ -1,4 +1,3 @@
-
 // Enregistrement du Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
@@ -35,7 +34,7 @@ function pushNotification(title, body) {
   if (Notification.permission === 'granted') {
     new Notification(title, {
       body: body,
-      icon: 'icon.png' // chemin à adapter si nécessaire
+      icon: '../images/login.jpg' // chemin à adapter si nécessaire
     });
   }
 }
@@ -52,23 +51,23 @@ setInterval(() => {
         let type = '';
 
         if (minutes >= 59 && minutes <= 61) {
-          label = `🕐 Rappel : "${tache.titre_gp}" dans 1 heure`;
+          label = `🕐 Rappel : "${tache.titre}" dans 1 heure`;
           type = '1h';
         } else if (minutes >= 9 && minutes <= 11) {
-          label = `⏳ URGENT : "${tache.titre_gp}" dans 10 min`;
+          label = `⏳ URGENT : "${tache.titre}" dans 10 min`;
           type = '10m';
         }
 
-        if (label && !isAlreadyNotified(tache.id_tach_gp, type)) {
+        if (label && !isAlreadyNotified(tache.id_tache, type)) {
           pushNotification("Tâche à venir", label);
-          saveNotifiedTaskId(tache.id_tach_gp, type);
+          saveNotifiedTaskId(tache.id_tache, type);
         }
       });
     })
     .catch(err => console.error('❌ Erreur rappel tâches urgentes :', err));
 
   // 🆕 Notification si nouvelle tâche ajoutée (par un autre membre)
-  fetch('../php/done.php')
+  fetch('check_new_task.php')
     .then(res => res.json())
     .then(data => {
       if (data && data.action === 'nouvelle_tache') {
@@ -80,5 +79,4 @@ setInterval(() => {
     })
     .catch(err => console.error('❌ Erreur notif nouvelle tâche :', err));
 
-}, 60000); // toutes les 1 min
-
+}, 60000); // toutes les 1 min 

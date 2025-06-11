@@ -15,8 +15,9 @@ if(!isset($_SESSION['email'])){
     <link rel="stylesheet" href="../style/head.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Inclure le fihcier de push -->
+     <script src="push.js"></script>
   
-
 </head>
 <body>
 
@@ -29,8 +30,6 @@ if(!isset($_SESSION['email'])){
             <ion-icon name="grid-outline" ></ion-icon>
         </div>
         
-
-         
             <nav id="nav-menu">
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
@@ -79,13 +78,7 @@ if(!isset($_SESSION['email'])){
             }
         }
     </script>
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("http://127.0.0.1/Gestion_des_taches/service-worker.js")
-            .then(() => console.log("Service Worker enregistré !"))
-            .catch(err => console.error("Erreur Service Worker :", err));
-        }
-    </script>
+
     <script src="../script/script.js"></script>
 
 </body>
